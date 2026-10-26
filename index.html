@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreya Kumari | Electronics & Embedded Systems Engineer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: '#111827',
+                        cardHover: '#1f2937',
+                        accent: '#3b82f6',
+                        accentGlow: 'rgba(59, 130, 246, 0.15)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-100 font-sans antialiased selection:bg-accent selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-darkBg/80 backdrop-blur-md border-b border-gray-800/80 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#about" class="text-xl font-bold font-mono text-accent hover:opacity-80 transition-opacity">
+                &lt;ShreyaKumari /&gt;
+            </a>
+            
+            <ul class="hidden md:flex items-center space-x-8 font-medium text-sm text-gray-400">
+                <li><a href="#about" class="hover:text-accent transition-colors">About</a></li>
+                <li><a href="#skills" class="hover:text-accent transition-colors">Skills</a></li>
+                <li><a href="#projects" class="hover:text-accent transition-colors">Projects</a></li>
+                <li><a href="#education" class="hover:text-accent transition-colors">Education & Training</a></li>
+                <li><a href="#contact" class="hover:text-accent transition-colors">Contact</a></li>
+            </ul>
+
+            <!-- Mobile menu button -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-400 hover:text-white focus:outline-none" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-cardBg border-b border-gray-800 px-6 py-4 space-y-3 font-medium text-gray-400">
+            <a href="#about" class="block hover:text-accent transition-colors mobile-nav-link">About</a>
+            <a href="#skills" class="block hover:text-accent transition-colors mobile-nav-link">Skills</a>
+            <a href="#projects" class="block hover:text-accent transition-colors mobile-nav-link">Projects</a>
+            <a href="#education" class="block hover:text-accent transition-colors mobile-nav-link">Education & Training</a>
+            <a href="#contact" class="block hover:text-accent transition-colors mobile-nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero / About Section -->
+    <section id="about" class="min-h-screen flex items-center pt-24 pb-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            
+            
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-accent">Shreya Kumari</span>.
+            </h1>
+            
+            <p class="text-gray-400 text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl">
+                Electronics & Communication Engineer with a strong technical foundation across Diploma & B.Tech degrees. Specialized in Embedded Systems, PCB Hardware Design, Semiconductor Packaging Concepts (OSAT/ATE Testing), and Communication Protocols (SPI, I2C, UART, CAN).
+            </p>
+
+            <!-- Interactive Action & Contact Toggle Area -->
+            <div class="space-y-4">
+                <div class="flex flex-wrap items-center gap-4">
+                    <button id="toggleContactBtn" onclick="toggleContactInfo()" class="px-6 py-3.5 rounded-xl bg-accent hover:bg-blue-600 text-white font-semibold text-sm transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-accent/20 flex items-center gap-2">
+                        <i class="fa-solid fa-address-card"></i>
+                        <span id="contactBtnText">Click to Show Contact Info</span>
+                    </button>
+                    
+                    <a href="#projects" class="px-6 py-3.5 rounded-xl bg-cardBg hover:bg-cardHover border border-gray-800 text-gray-200 font-semibold text-sm transition-all duration-300 flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open text-gray-400"></i>
+                        <span>Explore Projects</span>
+                    </a>
+                </div>
+
+                <!-- Hidden Contact Info Box -->
+                <div id="contactDetailsBox" class="hidden transition-all duration-300 max-w-md bg-cardBg border border-accent/40 rounded-xl p-5 space-y-3 font-mono text-sm text-gray-300 shadow-xl shadow-accent/5">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-500 block">Email Address</span>
+                            <a href="mailto:shreyakumari0620@gmail.com" class="hover:text-accent transition-colors">shreyakumari0620@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-2 border-t border-gray-800">
+                        <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-500 block">Phone Number</span>
+                            <a href="tel:+916209120512" class="hover:text-accent transition-colors">+91 6209120512</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Links Quick Bar -->
+            <div class="flex items-center space-x-6 mt-10 text-gray-400 text-xl">
+                <a href="https://www.linkedin.com/in/shreya-kumari-63802a334" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors" title="LinkedIn Profile">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/kumari-shreya-ui" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors" title="GitHub Profile">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="mailto:shreyakumari0620@gmail.com" class="hover:text-accent transition-colors" title="Send Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-darkBg/50 border-t border-gray-800/60">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-2">Technical Skills</h2>
+            <p class="text-gray-400 text-sm mb-12">Core competencies across hardware design, embedded software, and industrial tools.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Skill Card 1 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-accent/40 transition-colors">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400">
+                            <i class="fa-solid fa-microchip text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-white">Hardware Design & Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">PCB Layout (KiCad)</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Autodesk Eagle</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Schematic Capture</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Hardware Debugging</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Oscilloscopes</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Soldering</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Multimeters</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 2 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-accent/40 transition-colors">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2.5 rounded-lg bg-indigo-500/10 text-indigo-400">
+                            <i class="fa-solid fa-code text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-white">Programming & Embedded</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Embedded C</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">C++</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Python (Basic)</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Assembly Concepts</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 3 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-accent/40 transition-colors">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400">
+                            <i class="fa-solid fa-memory text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-white">Microcontrollers & Systems</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">ESP32</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Arduino</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">NodeMCU</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Interfacing</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Timers</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Interrupts</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">ADC / PWM</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 4 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-accent/40 transition-colors">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2.5 rounded-lg bg-amber-500/10 text-amber-400">
+                            <i class="fa-solid fa-network-wired text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-white">Protocols & Industrial</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">SPI</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">I2C</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">UART</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">CAN</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">PLC Systems</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Industrial Sensors</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 5 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-accent/40 transition-colors md:col-span-2 lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2.5 rounded-lg bg-purple-500/10 text-purple-400">
+                            <i class="fa-solid fa-laptop-code text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-white">Software & Simulation Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">MATLAB</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Arduino IDE</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">VS Code</span>
+                        <span class="px-3 py-1 rounded-md bg-gray-800/80 text-gray-300 font-mono text-xs border border-gray-700/50">Git / GitHub</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-2">Featured Projects</h2>
+            <p class="text-gray-400 text-sm mb-12">Hardware prototypes, Edge-AI implementations, and embedded IoT systems.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Project Card 1 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 flex flex-col justify-between hover:border-accent/40 transition-all duration-300 transform hover:-translate-y-1">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono text-accent bg-accent/10 border border-accent/20 px-2.5 py-1 rounded-full">Oct 2025 - Nov 2025</span>
+                            <span class="text-xs text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded font-mono">Hackathon</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Smart Waste Segregation System</h3>
+                        <p class="text-xs text-gray-400 font-mono mb-4">Smart India Hackathon</p>
+                        <ul class="text-gray-300 text-sm space-y-2 mb-6 leading-relaxed">
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2">▹</span>
+                                Developed an Edge-AI waste classification system using Python and computer vision algorithms for real-time sorting.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2">▹</span>
+                                Integrated hardware actuators with processing units to execute multi-category sorting (dry, wet, plastic, hazardous) with low latency.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-gray-800/60">
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">Edge AI</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">Python</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">Computer Vision</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">Actuators</span>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 flex flex-col justify-between hover:border-accent/40 transition-all duration-300 transform hover:-translate-y-1">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono text-accent bg-accent/10 border border-accent/20 px-2.5 py-1 rounded-full">Mar 2026 - Apr 2026</span>
+                            <span class="text-xs text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded font-mono">Hardware</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Wireless EV Charging System Prototype</h3>
+                        <p class="text-xs text-gray-400 font-mono mb-4">Inductive Power Transfer</p>
+                        <ul class="text-gray-300 text-sm space-y-2 mb-6 leading-relaxed">
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2">▹</span>
+                                Designed LC resonant transmitter/receiver circuits in KiCad based on inductive power transfer principles.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2">▹</span>
+                                Characterized power transmission loss, coil alignment tolerance, and thermal performance using MATLAB simulations and physical testing.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-gray-800/60">
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">KiCad</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">MATLAB</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">LC Resonant</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">Power Electronics</span>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 flex flex-col justify-between hover:border-accent/40 transition-all duration-300 transform hover:-translate-y-1">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono text-accent bg-accent/10 border border-accent/20 px-2.5 py-1 rounded-full">Jan 2024 - Feb 2024</span>
+                            <span class="text-xs text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded font-mono">Embedded IoT</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">IoT Vehicle Safety & Interlock System</h3>
+                        <p class="text-xs text-gray-400 font-mono mb-4">Safety Interlock & Telemetry</p>
+                        <ul class="text-gray-300 text-sm space-y-2 mb-6 leading-relaxed">
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2">▹</span>
+                                Engineered an Embedded C driver for analog gas sensors (MQ-2) with real-time interrupt-driven engine disengagement.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2">▹</span>
+                                Configured NodeMCU (ESP8266) to stream telemetry data over Wi-Fi for remote status monitoring.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-gray-800/60">
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">Embedded C</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">ESP8266</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">MQ-2 Sensor</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-400 font-mono text-xs">Wi-Fi Telemetry</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Training Section -->
+    <section id="education" class="py-20 px-6 bg-darkBg/50 border-t border-gray-800/60">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-2">Education & Training</h2>
+            <p class="text-gray-400 text-sm mb-12">Academic qualifications and specialized technical training programs.</p>
+
+            <div class="relative border-l-2 border-gray-800 pl-6 sm:pl-8 space-y-12 ml-2">
+                
+                <!-- Education Item 1 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-accent border-4 border-darkBg group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6 hover:border-accent/40 transition-colors">
+                        <span class="text-xs font-mono text-accent">2024 - 2027</span>
+                        <h3 class="text-xl font-bold text-white mt-1">B.Tech in Electronics and Communication Engineering</h3>
+                        <p class="text-gray-400 text-sm mt-1">Lakshmi Narain College of Technology, Bhopal, Madhya Pradesh</p>
+                    </div>
+                </div>
+
+                <!-- Education Item 2 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-gray-600 border-4 border-darkBg group-hover:bg-accent group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6 hover:border-accent/40 transition-colors">
+                        <span class="text-xs font-mono text-accent">2021 - 2024</span>
+                        <h3 class="text-xl font-bold text-white mt-1">Diploma in Electronics Engineering</h3>
+                        <p class="text-gray-400 text-sm mt-1">Government Women's Polytechnic College, Patna, Bihar</p>
+                    </div>
+                </div>
+
+                <!-- Training & Certification Item -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-gray-600 border-4 border-darkBg group-hover:bg-accent group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6 hover:border-accent/40 transition-colors">
+                        <span class="text-xs font-mono text-accent">Dec 2023 - Jan 2024</span>
+                        <h3 class="text-xl font-bold text-white mt-1">IoT Architecture & Embedded Programming Certification</h3>
+                        <p class="text-gray-400 text-sm mt-1">National Institute of Electronics & Information Technology (NIELIT)</p>
+                        <ul class="text-gray-300 text-sm space-y-1.5 mt-4 leading-relaxed">
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2">▹</span>
+                                Acquired foundational knowledge of IoT architecture, core hardware components, and communication protocols.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2">▹</span>
+                                Practical exposure to microcontrollers (Arduino Uno, NodeMCU ESP8266) with sensor & actuator interfacing in Embedded C.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Contact Section -->
+    <footer id="contact" class="py-16 px-6 border-t border-gray-800 text-center">
+        <div class="max-w-4xl mx-auto space-y-6">
+            <h2 class="text-2xl font-bold text-white">Let's Connect</h2>
+            <p class="text-gray-400 text-sm max-w-md mx-auto">
+                Open to opportunities in Embedded Systems, PCB Hardware Engineering, and IoT Development.
+            </p>
+
+            <div class="flex justify-center space-x-6 text-2xl text-gray-400 pt-2">
+                <a href="https://linkedin.com/in/shreya-kumari" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors" title="LinkedIn Profile">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/shreyakumari" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors" title="GitHub Profile">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="mailto:shreyakumari0620@gmail.com" class="hover:text-accent transition-colors" title="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+
+            <p class="text-gray-600 text-xs font-mono pt-8">
+                &copy; 2026 Shreya Kumari. Built with HTML, Tailwind CSS, & JavaScript.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu & Contact Toggle -->
+    <script>
+        // Toggle Contact Info Box
+        function toggleContactInfo() {
+            const contactBox = document.getElementById('contactDetailsBox');
+            const contactBtnText = document.getElementById('contactBtnText');
+            
+            if (contactBox.classList.contains('hidden')) {
+                contactBox.classList.remove('hidden');
+                contactBtnText.innerText = 'Hide Contact Info';
+            } else {
+                contactBox.classList.add('hidden');
+                contactBtnText.innerText = 'Click to Show Contact Info';
+            }
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
